@@ -8,8 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -67,6 +65,8 @@ public class codelab_6 extends Application {
     void handleAction() {
         if (status.equals("Start")) {
             mulaiGame();
+        } else if (status.equals("selesai")) {
+            resetGame();
         } else {
             prosesTebakan();
         }
@@ -90,14 +90,16 @@ public class codelab_6 extends Application {
         try {
             tebakInputValue = Integer.parseInt(tebakInput.getText());
         } catch (NumberFormatException ex) {
-            showAlert("Input tidak valid!");
+            showAlert("Input tidak valid!" + angkaRandom);
             return;
         }
 
         if (tebakInputValue == angkaRandom) {
-            String pesan = (kesempatan == 5) ? "FIRST TRY 🔥🔥" : "BENAR!!";
-            showAlert(pesan + " ANGKANYA: " + angkaRandom);
-            resetGame();
+            String pesan = (kesempatan == 5) ? "✅ FIRST TRY 🔥🔥" : "✅ BENAR!!";
+            infoTebakan.setStyle("-fx-text-fill: green;");
+            infoTebakan.setText(pesan + " ANGKANYA: " + angkaRandom);
+            status = "selesai";
+            actionBtn.setText("Kembali");
         } else {
             kesempatan--;
             sisaKesempatan.setText("Sisa Percobaan: " + kesempatan);
