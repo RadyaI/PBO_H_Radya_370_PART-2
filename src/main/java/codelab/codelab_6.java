@@ -19,16 +19,11 @@ public class codelab_6 extends Application {
     int kesempatan = 5;
     int angkaRandom;
 
-    Image targetIcon = new Image(getClass().getResourceAsStream("/assets/bullseye.png"));
-    ImageView targetIconView = new ImageView(targetIcon);
-    Image diceIcon = new Image(getClass().getResourceAsStream("/assets/dice.png"));
-    ImageView diceIconView = new ImageView(diceIcon);
-
-    Label title = new Label(" Tebak Angka 1-100", targetIconView);
+    Label title = new Label("🎯 Tebak Angka 1-100");
     HBox titleBox = new HBox();
 
     TextField tebakInput = new TextField();
-    Button actionBtn = new Button(status, diceIconView);
+    Button actionBtn = new Button(status);
 
     Label guide = new Label("Masukkan Tebakanmu!");
     Label infoTebakan = new Label();
@@ -41,11 +36,6 @@ public class codelab_6 extends Application {
         title.setStyle("-fx-text-fill: darkblue; -fx-font-size: 25px;");
         titleBox.getChildren().add(title);
         titleBox.setAlignment(Pos.BASELINE_CENTER);
-
-        targetIconView.setFitWidth(20);
-        targetIconView.setFitHeight(20);
-        diceIconView.setFitWidth(17);
-        diceIconView.setFitHeight(17);
 
         tebakInput.setVisible(false);
         tebakInput.setManaged(false);
@@ -85,7 +75,7 @@ public class codelab_6 extends Application {
     void mulaiGame() {
         status = "started";
         infoTebakan.setText("");
-        actionBtn.setText("Coba Tebak!");
+        actionBtn.setText("🎲 Coba Tebak!");
         tebakInput.setVisible(true);
         tebakInput.setManaged(true);
         angkaRandom = generateAngka();
@@ -116,7 +106,7 @@ public class codelab_6 extends Application {
                 showAlert("Kesempatan Sudah Habis... Angkanya adalah " + angkaRandom);
                 resetGame();
             } else {
-                infoTebakan.setText(tebakInputValue > angkaRandom ? "Terlalu Besar!" : "Terlalu Kecil!");
+                infoTebakan.setText(tebakInputValue > angkaRandom ? "🔺 Terlalu Besar!" : "🔻 Terlalu Kecil!");
             }
         }
     }
