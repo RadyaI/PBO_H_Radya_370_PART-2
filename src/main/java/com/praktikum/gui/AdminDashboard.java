@@ -108,16 +108,18 @@ public class AdminDashboard extends VBox {
         mahasiswaBox.getChildren().addAll(label, table, namaField, nimField, tambahBtn, hapusBtn);
     }
 
+    private ObservableList<Item> dataBarang = FXCollections.observableArrayList();
+
     private void setupKelolaBarang() {
         barangBox.getChildren().clear();
 
         Label label = new Label("Daftar Barang Hilang");
         label.setFont(Font.font("Segoe UI", FontWeight.BOLD, 18));
 
-        ObservableList<Item> data = FXCollections.observableArrayList(admin.getDaftarBarang());
+        dataBarang.setAll(admin.getDaftarBarang());
 
         TableView<Item> table = new TableView<>();
-        table.setItems(data);
+        table.setItems(dataBarang);
         table.setPrefHeight(300);
         table.setPrefWidth(500);
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -141,7 +143,7 @@ public class AdminDashboard extends VBox {
             Item dipilih = table.getSelectionModel().getSelectedItem();
             if (dipilih != null) {
                 admin.tandaiBarangClaimed(dipilih);
-                table.setItems(FXCollections.observableArrayList(admin.getDaftarBarang()));
+                dataBarang.setAll(admin.getDaftarBarang()); // ⬅️ ini yang update tampilan tanpa reset table
             }
         });
 
