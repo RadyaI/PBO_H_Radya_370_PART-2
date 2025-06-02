@@ -1,8 +1,9 @@
-module com.student {
+module com.praktikum {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens com.student to javafx.fxml;
-    exports com.student;
+    opens com.praktikum to javafx.fxml;
+    exports com.praktikum;
+    // exports com.praktikum.actions;
     exports codelab;
 }

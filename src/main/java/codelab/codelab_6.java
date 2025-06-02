@@ -32,9 +32,12 @@ public class codelab_6 extends Application {
         guide.setStyle("-fx-font-size: 16px;");
         infoTebakan.setStyle("-fx-text-fill: darkorange; -fx-font-size: 15px;");
         title.setStyle("-fx-text-fill: darkblue; -fx-font-size: 25px;");
+
+        // Untuk memasukkan ke dalam layoutnya
         titleBox.getChildren().add(title);
         titleBox.setAlignment(Pos.BASELINE_CENTER);
 
+        // Untuk mengatur muncul dan hilang
         tebakInput.setVisible(false);
         tebakInput.setManaged(false);
         tebakInput.setPrefWidth(200);
@@ -90,7 +93,7 @@ public class codelab_6 extends Application {
         try {
             tebakInputValue = Integer.parseInt(tebakInput.getText());
         } catch (NumberFormatException ex) {
-            showAlert("Input tidak valid!" + angkaRandom);
+            showAlert("Input tidak valid!");
             return;
         }
 
@@ -133,7 +136,7 @@ public class codelab_6 extends Application {
         alert.setTitle("Info");
         alert.setHeaderText(null);
         alert.setContentText(message);
-        alert.show();
+        alert.showAndWait();
     }
 
     public static void main(String[] args) {
