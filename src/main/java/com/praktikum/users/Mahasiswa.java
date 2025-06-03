@@ -1,8 +1,8 @@
 package com.praktikum.users;
 
 import com.praktikum.actions.MahasiswaActions;
+import com.praktikum.data.DataStore;
 import com.praktikum.data.Item;
-import com.praktikum.main.loginSystem;
 
 import java.util.ArrayList;
 
@@ -13,12 +13,12 @@ public class Mahasiswa extends User implements MahasiswaActions {
     }
 
     public void reportItem(String namaBarang, String deskripsiBarang, String lokasiTerakhir) {
-        loginSystem.reportedItem.add(new Item(namaBarang, deskripsiBarang, lokasiTerakhir));
+        DataStore.reportedItem.add(new Item(namaBarang, deskripsiBarang, lokasiTerakhir));
     }
 
     public ArrayList<Item> getReportedItems() {
         ArrayList<Item> userItems = new ArrayList<>();
-        for (Item i : loginSystem.reportedItem) {
+        for (Item i : DataStore.reportedItem) {
             if (i.getStatus().equals("Reported")) {
                 userItems.add(i);
             }

@@ -2,6 +2,7 @@ package com.praktikum.users;
 
 import java.util.*;
 import com.praktikum.actions.AdminActions;
+import com.praktikum.data.DataStore;
 import com.praktikum.data.Item;
 import com.praktikum.main.loginSystem;
 
@@ -14,12 +15,12 @@ public class Admin extends User implements AdminActions {
     }
 
     public List<Item> getDaftarBarang() {
-        return loginSystem.reportedItem;
+        return DataStore.reportedItem;
     }
 
     public List<Mahasiswa> getDaftarMahasiswa() {
         List<Mahasiswa> daftar = new ArrayList<>();
-        for (User u : loginSystem.userList) {
+        for (User u : DataStore.userList) {
             if (u instanceof Mahasiswa) {
                 daftar.add((Mahasiswa) u);
             }
@@ -28,17 +29,17 @@ public class Admin extends User implements AdminActions {
     }
 
     public boolean tambahMahasiswa(String nama, String nim) {
-        for (User u : loginSystem.userList) {
+        for (User u : DataStore.userList) {
             if (u instanceof Mahasiswa && u.getNim().equals(nim)) {
                 return false;
             }
         }
-        loginSystem.userList.add(new Mahasiswa(nama, nim));
+        DataStore.userList.add(new Mahasiswa(nama, nim));
         return true;
     }
 
     public boolean hapusMahasiswa(String nim) {
-        Iterator<User> it = loginSystem.userList.iterator();
+        Iterator<User> it = DataStore.userList.iterator();
         while (it.hasNext()) {
             User u = it.next();
             if (u instanceof Mahasiswa && u.getNim().equals(nim)) {
